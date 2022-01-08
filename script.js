@@ -56,7 +56,7 @@ let langKey = {
   ru: "Понедельник, Вторник, Среда, Четверг, Пятница, Суббота, Воскресенье",
   en: "Monda, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday",
 };
-console.log(langKey);
+console.log(langKey[lang]);
 
 let namePerson = "Студент";
 console.log(
