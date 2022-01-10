@@ -1,14 +1,16 @@
-function checkPrompt(checkMessage) {
-  let openingString = "Какая-то строка";
+"use strict";
+
+let openingString = "Какая-то строка";
+function checkStr(checkMessage) {
   if (typeof checkMessage === "string") {
-    let maxStrong = 30;
     let line = checkMessage.trim();
-    if (line.length > maxStrong) {
-      openingString = line.substring(0, maxStrong) + "...";
+    if (line.length > 30) {
+      openingString = line.substring(0, 30) + "...";
     } else {
       openingString = line;
+      console.log("Передана не строка, ты втираешь мне какую-то дичь?");
     }
   }
   return openingString;
 }
-console.log("checkPrompt(checkMessage):", checkPrompt(checkMessage));
+console.log("checkStr():", checkStr("Строка для проверки"));
