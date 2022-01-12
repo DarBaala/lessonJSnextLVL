@@ -1,17 +1,28 @@
 "use strict";
-function checkStr(checkMessage) {
-  if (typeof checkMessage === "string") {
-    if (checkMessage.trim().length > 30) {
-      console.log(checkMessage.trim().substring(0, 30) + "...");
-    } else {
-      console.log(checkMessage.trim());
-    }
-  } else {
-    console.log("Передана не строка, ты втираешь мне какую-то дичь?");
+
+let arr = ["3458", "456623", "9462953", "284673", "695863", "28758", "986453"];
+for (let i = 0; i < arr.length; i++) {
+  if (arr[i].startsWith("2") || arr[i].startsWith("4")) {
+    console.log(arr[i]);
   }
 }
-checkStr("Строка менее 30 символов");
-checkStr(
-  "Строка больше 30 символов символов символов символов символов символов символов символов"
-);
-checkStr(303);
+
+let simply = function (el) {
+  let arr = [];
+  if (el !== 1) {
+    arr.push(1);
+    for (let s = 2; s * s <= el; s++) {
+      if (el % s === 0) {
+        arr.push(s);
+      }
+    }
+  }
+  arr.push(el);
+  return arr;
+};
+for (let i = 1; i <= 100; i++) {
+  let n = simply(i);
+  if (n.length <= 2) {
+    console.log(`${i}. Делители этого числа ${n.join(", ")}`);
+  }
+}
