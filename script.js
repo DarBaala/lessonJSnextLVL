@@ -1,28 +1,20 @@
 "use strict";
 
 let arr = ["3458", "456623", "9462953", "284673", "695863", "28758", "986453"];
-for (let i = 0; i < arr.length; i++) {
-  if (arr[i].startsWith("2") || arr[i].startsWith("4")) {
-    console.log(arr[i]);
+arr.forEach((e) => {
+  if (e[0] === "2" || e[0] === "4") {
+    console.log(`${e}`);
   }
-}
+});
 
-let simply = function (el) {
-  let arr = [];
-  if (el !== 1) {
-    arr.push(1);
-    for (let s = 2; s * s <= el; s++) {
-      if (el % s === 0) {
-        arr.push(s);
-      }
+let x = 100;
+
+nextNumber: for (let i = 2; i <= x; i++) {
+  for (let j = 2; j < i; j++) {
+    if (i % j === 0) {
+      continue nextNumber;
     }
   }
-  arr.push(el);
-  return arr;
-};
-for (let i = 1; i <= 100; i++) {
-  let n = simply(i);
-  if (n.length <= 2) {
-    console.log(`${i}. Делители этого числа ${n.join(", ")}`);
-  }
+
+  console.log(i + " Делители этого числа 1 и " + i);
 }
