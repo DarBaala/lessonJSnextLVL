@@ -1,20 +1,52 @@
 "use strict";
 
-let arr = ["3458", "456623", "9462953", "284673", "695863", "28758", "986453"];
-arr.forEach((e) => {
-  if (e[0] === "2" || e[0] === "4") {
-    console.log(`${e}`);
-  }
-});
+function isNumber(n) {
+  return !isNaN(parseFloat(n)) && isFinite(n);
+}
+function randomNum() {
+  return Math.floor(Math.random() * Math.floor(100));
+}
 
-let x = 100;
-
-nextNumber: for (let i = 2; i <= x; i++) {
-  for (let j = 2; j < i; j++) {
-    if (i % j === 0) {
-      continue nextNumber;
+function start() {
+  let numMath = randomNum();
+  let attempts = 10;
+  function game() {
+    attempts--;
+    if (attempts < 0) {
+      if (confirm("Попытки закончились, го еще?")) {
+        start();
+      } else {
+        alert("Goodbay");
+        return;
+      }
+    } else {
+      const num = prompt("Угадай число от 1 до 100");
+      if (num === null) {
+        alert("Goodbay");
+        return;
+      }
+      if (isNumber(num)) {
+        let realNum = +num;
+        if (realNum > numMath) {
+          alert("Упс, число меньше!");
+          game();
+        } else if (realNum < numMath) {
+          alert("Упс, число больше!");
+          game();
+        } else {
+          if (confirm("Вы угадали! Давай ещё?")) {
+            start();
+          } else {
+            alert("Goodbay");
+            return;
+          }
+        }
+      } else {
+        alert("Введите число");
+        game();
+      }
     }
   }
-
-  console.log(i + " Делители этого числа 1 и " + i);
+  game();
 }
+start();
