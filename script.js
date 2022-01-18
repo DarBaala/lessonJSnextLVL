@@ -1,52 +1,30 @@
 "use strict";
-
-function isNumber(n) {
-  return !isNaN(parseFloat(n)) && isFinite(n);
+const week = [
+  "Понедельник",
+  "Вторник",
+  "Среда",
+  "Четверг",
+  "Пятница",
+  "Суббота",
+  "Воскресенье",
+];
+const day = new Date();
+let numWeekDay = day.getDay();
+if (numWeekDay === 0) {
+  numWeekDay = 6;
+} else {
+  numWeekDay--;
 }
-function randomNum() {
-  return Math.floor(Math.random() * Math.floor(100));
-}
 
-function start() {
-  let numMath = randomNum();
-  let attempts = 10;
-  function game() {
-    attempts--;
-    if (attempts < 0) {
-      if (confirm("Попытки закончились, го еще?")) {
-        start();
-      } else {
-        alert("Goodbay");
-        return;
-      }
-    } else {
-      const num = prompt("Угадай число от 1 до 100");
-      if (num === null) {
-        alert("Goodbay");
-        return;
-      }
-      if (isNumber(num)) {
-        let realNum = +num;
-        if (realNum > numMath) {
-          alert("Упс, число меньше!");
-          game();
-        } else if (realNum < numMath) {
-          alert("Упс, число больше!");
-          game();
-        } else {
-          if (confirm("Вы угадали! Давай ещё?")) {
-            start();
-          } else {
-            alert("Goodbay");
-            return;
-          }
-        }
-      } else {
-        alert("Введите число");
-        game();
-      }
-    }
+week.forEach((day, i) => {
+  let str = day;
+  if (i === numWeekDay) {
+    str = `<b>${day}</b>`;
+  } else {
+    str = `${day}`;
   }
-  game();
-}
-start();
+  if (i === 5 || i === 6) {
+    str = `<i>${str}</i>`;
+  }
+  document.body.insertAdjacentHTML("beforeend", `<div>${str}</div>`);
+});
