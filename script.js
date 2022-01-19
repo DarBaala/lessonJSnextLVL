@@ -8,20 +8,20 @@ const week = [
   "Суббота",
   "Воскресенье",
 ];
-const day = new Date();
-let numWeekDay = day.getDay();
+const date = new Date();
+let numWeekDay = date.getDay();
 if (numWeekDay === 0) {
   numWeekDay = 6;
 } else {
   numWeekDay--;
 }
 
-week.forEach((day, i) => {
-  let str = day;
+week.forEach((date, i) => {
+  let str = date;
   if (i === numWeekDay) {
-    str = `<b>${day}</b>`;
+    str = `<b>${date}</b>`;
   } else {
-    str = `${day}`;
+    str = `${date}`;
   }
   if (i === 5 || i === 6) {
     str = `<i>${str}</i>`;
