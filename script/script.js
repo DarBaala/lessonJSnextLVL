@@ -45,23 +45,22 @@ window.addEventListener("DOMContentLoaded", function () {
   countTimer("22 march 2022");
   /// MENU
   const toggleMenu = () => {
-    const btnMenu = document.querySelector(".menu");
-    const menu = document.querySelector("menu");
     const handlerMenu = () => {
-      menu.classList.toggle("active-menu");
-    };
-    btnMenu.addEventListener("click", handlerMenu);
-    menu.addEventListener("click", (event) => {
-      let target = event.target;
-      if (target.classList.contains("close-btn")) {
-        handlerMenu();
-      } else {
-        target = target.matches('[href^="#"]');
-        if (target) {
-          handlerMenu();
-        }
+      const target = event.target;
+      const displayMenu = () => {
+        document.querySelector("menu").classList.toggle("active-menu");
+      };
+      if (
+        target.closest(".menu") ||
+        (!target.closest("menu") &&
+          document.querySelector("menu").classList.contains("active-menu"))
+      ) {
+        displayMenu();
+      } else if (target.closest("menu") && target.closest('[href^="#"]')) {
+        displayMenu();
       }
-    });
+    };
+    document.body.addEventListener("click", handlerMenu);
   };
   toggleMenu();
   ///POPUP
